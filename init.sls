@@ -13,6 +13,9 @@ ssh:
     - user: root
     - group: root
     - mode: 644
-    - source: salt://sshd/sshd_config
+    - source: salt://sshd/sshd_config.jinja
+    - template: jinja
+    - defaults:
+      log_level: 'VERBOSE'
     - require:
       - pkg: openssh-server
