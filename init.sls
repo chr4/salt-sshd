@@ -1,5 +1,3 @@
-{% set port = salt['pillar.get']('sshd:port', 22) %}
-
 openssh-server:
   pkg.installed: []
 
@@ -18,7 +16,7 @@ ssh:
     - source: salt://sshd/sshd_config.jinja
     - template: jinja
     - defaults:
-      port: {{ port }}
+      port: {{ salt.pillar.get('sshd:port', 22) }}
       log_level: 'VERBOSE'
     - require:
       - pkg: openssh-server
