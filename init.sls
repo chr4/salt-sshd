@@ -13,7 +13,7 @@ ssh:
     - user: root
     - group: root
     - mode: 644
-    - source: salt://sshd/sshd_config.jinja
+    - source: salt://{{ tpldir }}/sshd_config.jinja
     - template: jinja
     - defaults:
       port: {{ salt['pillar.get']('sshd:port', 22) }}
