@@ -4,7 +4,6 @@ AcceptEnv LANG LC_*
 ChallengeResponseAuthentication no
 GSSAPIAuthentication no
 HostKey /etc/ssh/ssh_host_ed25519_key
-HostKey /etc/ssh/ssh_host_rsa_key
 PasswordAuthentication no
 PrintMotd no
 Protocol 2
@@ -16,6 +15,6 @@ UsePAM yes
 X11Forwarding no
 
 # Only allow secure ciphers
-KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
+KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org
 MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
 Ciphers chacha20-poly1305@openssh.com
