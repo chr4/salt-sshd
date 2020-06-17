@@ -14,7 +14,7 @@ UsePAM yes
 X11Forwarding no
 
 # Only allow secure ciphers
-{%- if grains['oscodename'] == 'xenial' %}
+{%- if grains['os'] == 'Ubuntu' and grains['oscodename'] == 'xenial' %}
 # Ubuntu Xenial 16.04 doesn't support curve25519-sha256
 KexAlgorithms curve25519-sha256@libssh.org
 {%- else %}
