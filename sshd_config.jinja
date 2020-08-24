@@ -12,6 +12,7 @@ SyslogFacility AUTH
 UseDNS no
 UsePAM yes
 X11Forwarding no
+PermitRootLogin no
 
 # Only allow secure ciphers
 {%- if grains['oscodename'] == 'xenial' %}
