@@ -18,6 +18,7 @@ ssh:
     - template: jinja
     - defaults:
       port: {{ salt['pillar.get']('sshd:port', 22) }}
+      permit_root_login: {{ salt['pillar.get']('sshd:permit_root_login', false) }}
       log_level: 'VERBOSE'
     - require:
       - pkg: openssh-server
