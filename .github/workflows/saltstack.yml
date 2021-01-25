@@ -28,7 +28,7 @@ jobs:
         sudo cp -r * /srv/sshd
         sudo salt-call state.apply \
           --local --log-file=/dev/null --retcode-passthrough --file-root /srv --pillar-root \
-          /srv/sshd/tests/pillar sshd
+          /srv/sshd/tests/pillar sshd,sshd.hostkeys
 
     - name: Run inspec
       run: sudo inspec exec tests/integration/sshd
@@ -58,7 +58,7 @@ jobs:
         sudo cp -r * /srv/sshd
         sudo salt-call state.apply \
           --local --log-file=/dev/null --retcode-passthrough --file-root /srv --pillar-root \
-          /srv/sshd/tests/pillar sshd
+          /srv/sshd/tests/pillar sshd,sshd.hostkeys
 
     - name: Run inspec
       run: sudo inspec exec tests/integration/sshd
