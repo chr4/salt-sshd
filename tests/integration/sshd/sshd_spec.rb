@@ -28,4 +28,15 @@ control 'ssh' do
     it { should be_listening }
     its('processes') { should include(/sshd/) }
   end
+
+  describe file('/etc/ssh/ssh_host_ed25519_key') do
+    its('mode') { should cmp '0600' }
+    its('content') { should match /^\s*PRIVATE KEY CONTENT$/ }
+  end
+
+  describe file('/etc/ssh/ssh_host_ed25519_key.pub') do
+    its('mode') { should cmp '0644' }
+    its('content') { should match /^\s*PUBLIC KEY CONTENT$/ }
+  end
+
 end

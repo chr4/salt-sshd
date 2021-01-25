@@ -8,7 +8,7 @@
   {% else %}
     - mode: 600
   {% endif %}
-    - contents_pillar: sshd:hostkeys:{{ key }} # could/should I use simply {{ key }} here
+    - contents_pillar: sshd:hostkeys:{{ key }}
     - require:
-      - pkg: openssh-server # is this necessary
+      - pkg: openssh-server
 {% endfor %}
