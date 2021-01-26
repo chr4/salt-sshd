@@ -31,12 +31,12 @@ control 'ssh' do
 
   describe file('/etc/ssh/ssh_host_ed25519_key') do
     its('mode') { should cmp '0600' }
-    its('content') { should match /^\s*PRIVATE KEY CONTENT$/ }
+    its('content') { should match /^PRIVATE KEY CONTENT$/ }
   end
 
   describe file('/etc/ssh/ssh_host_ed25519_key.pub') do
     its('mode') { should cmp '0644' }
-    its('content') { should match /^\s*PUBLIC KEY CONTENT$/ }
+    its('content') { should match /^PUBLIC KEY CONTENT$/ }
   end
 
 end
