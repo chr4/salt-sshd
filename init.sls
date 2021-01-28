@@ -34,7 +34,7 @@ ssh:
       - pkg: openssh-server
 
 # Deploy any specified hostkey files
-{% for key in salt['pillar.get']('sshd:hostkeys') %}
+{% for key in salt['pillar.get']('sshd:hostkeys', {}) %}
 /etc/ssh/{{ key }}:
   file.managed:
     - user: root
