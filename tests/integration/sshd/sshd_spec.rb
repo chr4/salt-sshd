@@ -12,6 +12,7 @@ control 'ssh' do
     its('content') { should match /^\s*KexAlgorithms.*curve25519-sha256@libssh.org/ } # Match xenial and bionic versions
     its('content') { should match /^\s*MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com$/ }
     its('content') { should match /^\s*Ciphers chacha20-poly1305@openssh.com$/ }
+    its('content') { should match /^\s*ClientAliveInterval 15$/ }
   end
 
   describe file('/etc/ssh/moduli') do

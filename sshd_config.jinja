@@ -19,6 +19,10 @@ PermitRootLogin yes
 PermitRootLogin no
 {%- endif %}
 
+{%- if client_alive_interval %}
+ClientAliveInterval {{ client_alive_interval }}
+{%- endif %}
+
 # Only allow secure ciphers
 {%- if grains['oscodename'] == 'xenial' %}
 # Ubuntu Xenial 16.04 doesn't support curve25519-sha256
