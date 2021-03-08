@@ -1,6 +1,7 @@
 sshd:
   port: 22
   permit_root_login: false
+  client_alive_interval: 15
   hostkeys:
     ssh_host_ed25519_key: |
       PRIVATE KEY CONTENT

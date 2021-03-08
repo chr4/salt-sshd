@@ -19,6 +19,7 @@ ssh:
     - defaults:
       port: {{ salt['pillar.get']('sshd:port', 22) }}
       permit_root_login: {{ salt['pillar.get']('sshd:permit_root_login', false) }}
+      client_alive_interval: {{ salt['pillar.get']('sshd:client_alive_interval') }}
       log_level: 'VERBOSE'
     - require:
       - pkg: openssh-server
