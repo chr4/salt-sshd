@@ -28,10 +28,7 @@ MaxStartups {{ max_startups }}
 {%- endif %}
 
 # Only allow secure ciphers
-{%- if grains['osrelease']|float < 18.04  %}
-{# Ubuntu Xenial 16.04 doesn't support curve25519-sha256 #}
-KexAlgorithms curve25519-sha256@libssh.org
-{%- elif grains['osrelease']|float < 22.04  %}
+{%- if grains['osrelease']|float < 22.04  %}
 KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org
 {%- else %}
 {# sntrup761x25519-sha512 is supported from openssh-8.5 (Ubuntu Jammy 22.04) onwards #}
