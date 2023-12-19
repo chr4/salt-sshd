@@ -34,5 +34,14 @@ KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org
 {# sntrup761x25519-sha512 is supported from openssh-8.5 (Ubuntu Jammy 22.04) onwards #}
 KexAlgorithms sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org
 {%- endif %}
-MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
-Ciphers chacha20-poly1305@openssh.com
+
+# Do not use -etm MACs for now, as they are vulnerable to Terrapin
+# See: https://terrapin-attack.com
+# MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
+#MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
+MACs hmac-sha2-512,hmac-sha2-256
+
+# Do not use chacha20-poly1305 for now, as it is vulnerable to Terrapin
+# See: https://terrapin-attack.com
+#Ciphers chacha20-poly1305@openssh.com
+Ciphers aes256-gcm@openssh.com
