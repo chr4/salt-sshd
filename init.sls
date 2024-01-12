@@ -21,6 +21,7 @@ ssh:
       permit_root_login: {{ salt['pillar.get']('sshd:permit_root_login', false) }}
       client_alive_interval: {{ salt['pillar.get']('sshd:client_alive_interval') }}
       max_startups: {{ salt['pillar.get']('sshd:max_startups') }}
+      max_sessions: {{ salt['pillar.get']('sshd:max_sessions') }}
       log_level: 'VERBOSE'
     - require:
       - pkg: openssh-server
