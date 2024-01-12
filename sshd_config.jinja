@@ -23,6 +23,10 @@ PermitRootLogin no
 ClientAliveInterval {{ client_alive_interval }}
 {%- endif %}
 
+{%- if max_sessions %}
+MaxSessions {{ max_startups }}
+{%- endif %}
+
 {%- if max_startups %}
 MaxStartups {{ max_startups }}
 {%- endif %}
