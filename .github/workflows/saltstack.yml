@@ -3,21 +3,23 @@ name: 'Saltstack'
 on: [push, pull_request]
 
 jobs:
-  saltstack-focal:
-    name: 'Saltstack (Ubuntu 20.04 LTS)'
-    runs-on: ubuntu-20.04
+  saltstack-jammy:
+    name: 'Saltstack (Ubuntu 22.04 LTS)'
+    runs-on: ubuntu-22.04
     steps:
     - name: Install Chef Inspec
       run: |
-        wget https://packages.chef.io/files/stable/inspec/5.12.2/ubuntu/20.04/inspec_5.12.2-1_amd64.deb
-        sudo dpkg -i inspec_5.12.2-1_amd64.deb
-        rm inspec_5.12.2-1_amd64.deb
+        # NOTE: Newer inspec versions require a license, so keeping 5.x
+        # NOTE: Chef doesn't provide a package for 22.04
+        wget https://packages.chef.io/files/stable/inspec/5.22.36/ubuntu/20.04/inspec_5.22.36-1_amd64.deb
+        sudo dpkg -i inspec_5.22.36-1_amd64.deb
+        rm inspec_5.22.36-1_amd64.deb
         sudo inspec --chef-license=accept-silent
 
     - name: Install salt-minion
       run: |
-        wget -O - http://repo.saltstack.com/py3/ubuntu/20.04/amd64/latest/SALTSTACK-GPG-KEY.pub | sudo apt-key add -
-        echo "deb http://repo.saltstack.com/py3/ubuntu/20.04/amd64/latest focal main" | sudo tee /etc/apt/sources.list.d/saltstack.list
+        wget -O - http://repo.saltproject.io/salt/py3/ubuntu/22.04/amd64/latest/SALTSTACK-GPG-KEY.pub | sudo apt-key add -
+        echo "deb http://repo.saltproject.io/salt/py3/ubuntu/22.04/amd64/latest bionic main" | sudo tee /etc/apt/sources.list.d/saltstack.list
         sudo apt-get update
         sudo apt-get install -y salt-minion
 
@@ -33,21 +35,22 @@ jobs:
     - name: Run inspec
       run: sudo inspec exec tests/integration/sshd
 
-  saltstack-bionic:
-    name: 'Saltstack (Ubuntu 18.04 LTS)'
-    runs-on: ubuntu-18.04
+  saltstack-focal:
+    name: 'Saltstack (Ubuntu 20.04 LTS)'
+    runs-on: ubuntu-20.04
     steps:
     - name: Install Chef Inspec
       run: |
-        wget https://packages.chef.io/files/stable/inspec/5.12.2/ubuntu/18.04/inspec_5.12.2-1_amd64.deb
-        sudo dpkg -i inspec_5.12.2-1_amd64.deb
-        rm inspec_5.12.2-1_amd64.deb
+        # NOTE: Newer inspec versions require a license, so keeping 5.x
+        wget https://packages.chef.io/files/stable/inspec/5.22.36/ubuntu/20.04/inspec_5.22.36-1_amd64.deb
+        sudo dpkg -i inspec_5.22.36-1_amd64.deb
+        rm inspec_5.22.36-1_amd64.deb
         sudo inspec --chef-license=accept-silent
 
     - name: Install salt-minion
       run: |
-        wget -O - http://repo.saltstack.com/py3/ubuntu/18.04/amd64/latest/SALTSTACK-GPG-KEY.pub | sudo apt-key add -
-        echo "deb http://repo.saltstack.com/py3/ubuntu/18.04/amd64/latest bionic main" | sudo tee /etc/apt/sources.list.d/saltstack.list
+        wget -O - http://repo.saltproject.io/salt/py3/ubuntu/20.04/amd64/latest/SALTSTACK-GPG-KEY.pub | sudo apt-key add -
+        echo "deb http://repo.saltproject.io/salt/py3/ubuntu/20.04/amd64/latest bionic main" | sudo tee /etc/apt/sources.list.d/saltstack.list
         sudo apt-get update
         sudo apt-get install -y salt-minion
 
